@@ -17,54 +17,72 @@ class MyApp extends StatelessWidget{
 }
 
 class Sonho extends StatefulWidget{
-    const Sonho({super.key});
+  const Sonho({super.key});
 
-    @override
-    State<Sonho> createState() => _SonhoState();
-  }
+  @override
+  State<Sonho> createState() => _SonhoState();
+}
 
 class _SonhoState extends State<Sonho>{
-    
-    @override
-    Widget build(BuildContext context){
-      return Scaffold(
-        bottomNavigationBar: NavigationBar(
-          destinations: const [
-            NavigationDestination(
-              selectedIcon: Icon(Icons.home),
-              icon: Icon(Icons.home_outlined),
-              label: 'Home',
-            ),
-            NavigationDestination(
-              icon: ,
-              label: ,
-            ),
-            NavigationDestination(
-              icon: ,
-              label: ,
-            ),
-          ],
-        ),
-        appBar: AppBar(
-          title: const Center(
-            child: Text('NavigatorBar'),
+  int currentPageIndex = 0;
+
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      bottomNavigationBar: NavigationBar(
+        
+        selectedIndex: currentPageIndex,
+        onDestinationSelected: (int index) {
+          setState(() {
+            currentPageIndex = index;
+          });
+        },
+        destinations: const [
+          NavigationDestination(
+            selectedIcon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
+            label: 'Home',
           ),
-          backgroundColor: Colors.blue,
+          NavigationDestination(
+            icon: Icon(Icons.notification_add),
+            label: 'Notifications',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.message),
+            label: 'Messages',
+          ),
+        ],
+      ),
+      appBar: AppBar(
+        title: const Center(
+          child: Text('NavigatorBar'),
         ),
-        body: const Body(),
-      );
-    }
+        backgroundColor: Colors.blue,
+      ),
+      body: const Body(),
+    );
   }
+}
 
 class Body extends StatelessWidget{
   const Body({super.key});
 
   @override
   Widget build(BuildContext context){
-    return ListView(
-      children: const [
-        
-      ],
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text('Centro'),
+          const SizedBox(height: 10.0),
+          ElevatedButton(
+            onPressed: () {
+              currentPageIndex += 1;
+            },
+            child: const Text('Mudar Página'),
+          ),
+        ],
+      ),
     );
   }
 }
