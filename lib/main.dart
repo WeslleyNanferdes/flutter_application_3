@@ -9,7 +9,8 @@ class MyApp extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-    return MaterialApp(
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Sonho(),
     );
   }
@@ -27,10 +28,30 @@ class _SonhoState extends State<Sonho>{
     @override
     Widget build(BuildContext context){
       return Scaffold(
-        appBar: AppBar(
-
+        bottomNavigationBar: NavigationBar(
+          destinations: const [
+            NavigationDestination(
+              selectedIcon: Icon(Icons.home),
+              icon: Icon(Icons.home_outlined),
+              label: 'Home',
+            ),
+            NavigationDestination(
+              icon: ,
+              label: ,
+            ),
+            NavigationDestination(
+              icon: ,
+              label: ,
+            ),
+          ],
         ),
-        body: Body(),
+        appBar: AppBar(
+          title: const Center(
+            child: Text('NavigatorBar'),
+          ),
+          backgroundColor: Colors.blue,
+        ),
+        body: const Body(),
       );
     }
   }
@@ -41,7 +62,9 @@ class Body extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return ListView(
-      
+      children: const [
+        
+      ],
     );
   }
 }
