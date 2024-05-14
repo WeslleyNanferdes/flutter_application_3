@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class MyApp extends StatefulWidget{
   const MyApp({super.key});
@@ -29,10 +28,9 @@ class _MyApp extends State<MyApp>{
     ),
   ];
 
-  void _pressedIcon(int index){
+  _pressedIcon(int index){
     setState(() {
       indexPage = index;
-      Navigator.pop(context);
     });
   }
 
@@ -42,8 +40,13 @@ class _MyApp extends State<MyApp>{
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Center(child: Text('AppBar', style: TextStyle(fontSize: 24))),
-          backgroundColor: Colors.blue,
+          title: const Center(
+            child: Text(
+              'AppBar',
+                style: TextStyle(fontSize: 24)
+              )
+            ),
+          backgroundColor: Colors.amber,
         ),
 
         body: Center(
@@ -73,10 +76,10 @@ class _MyApp extends State<MyApp>{
 
         drawer: Drawer(
           child: ListView(
-            children: const <Widget>[
-              DrawerHeader(
+            children: <Widget>[
+              const DrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.green,
+                  color: Colors.blue,
                 ),
                 child: Text(
                   'DrawerBar',
@@ -84,7 +87,27 @@ class _MyApp extends State<MyApp>{
                 )
               ),
               ListTile(
-                onTap: _pressedIcon
+                leading: const Icon(Icons.home),
+                title: const Text('home'),
+                onTap: (){
+                  _pressedIcon(0);
+                },
+              ),
+
+              ListTile(
+                leading: const Icon(Icons.notifications),
+                title: const Text('notifications'),
+                onTap: (){
+                  _pressedIcon(1);
+                },
+              ),
+
+              ListTile(
+                leading: const Icon(Icons.message),
+                title: const Text('message'),
+                onTap: (){
+                  _pressedIcon(2);
+                },
               ),
             ],
           ),
